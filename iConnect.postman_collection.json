@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "5bb89076-b643-4db0-9d57-c515ad936b68",
+		"name": "iConnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllContacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{appurl}}/contacts",
+					"host": [
+						"{{appurl}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveContact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Parse Token\", function () {\r",
+							"    var savedcontact=pm.response.json();\r",
+							"    pm.environment.set(\"contactid\", savedcontact.id);    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"shaik\",\"email\":\"shaik@gmail.com\",\"phone\":5678952,\"isFavorite\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appurl}}/contacts",
+					"host": [
+						"{{appurl}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetContactById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get contact by Id Test\", function () {\r",
+							"    var contact=pm.response.json();\r",
+							"    pm.expect(contact.id).equals(pm.environment.get(\"contactid\"));  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{appurl}}/contacts/{{contactid}}",
+					"host": [
+						"{{appurl}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateContact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update Id Test\", function () {\r",
+							"    var contact=pm.response.json();\r",
+							"    pm.expect(contact.id).equals(pm.environment.get(\"contactid\"));  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"shaik\",\"email\":\"shaik@gmail.com\",\"phone\":5678952,\"isFavorite\":true}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{appurl}}/contacts/{{contactid}}",
+					"host": [
+						"{{appurl}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteContact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete contact Test\", function () {\r",
+							"    var contact=pm.response.json();\r",
+							"    pm.expect(contact.id).equals(pm.environment.get(\"contactid\"));  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{appurl}}/contacts/{{contactid}}",
+					"host": [
+						"{{appurl}}"
+					],
+					"path": [
+						"contacts",
+						"{{contactid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
