@@ -12,7 +12,7 @@ postman[Symbol.for("initial")]({
   options,
   environment: {
     appurl: __ENV.appurl,
-    contactid: randomIntBetween(1,20)
+    contactid: randomIntBetween(1,100)
   }
 });
 
