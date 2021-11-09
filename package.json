@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx k6 run k6-script.js -e appurl=http://ec2-52-66-195-136.ap-south-1.compute.amazonaws.com"
+    "test": "npx k6 run k6-script.js"
   },
   "keywords": [],
   "author": "",
